@@ -31,7 +31,7 @@
 
 ## Kurulum
 ### Vue.js kurulum
-* npm
+* npm 
   ```
   npm install -g @vue/cli
   ```
