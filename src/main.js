@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import icon from './components/Shared/icons'
 import CKEditor from 'ckeditor4-vue';
+import("@/assets/js/app")
 
 Vue.use( CKEditor );
 

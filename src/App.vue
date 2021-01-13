@@ -3,6 +3,21 @@
     <div class="loader-container" v-if="loader">
       <div class="loader"></div>
     </div>
+
+    <div class="github-repo" v-if="githubRepo">
+      <div class="container">
+        <h4>sidetab.net açık kaynak geliştirilen bir projedir. Destek olmak isterseniz
+          <a href="https://github.com/sidetab-net" target="_blank">Github Repo</a>'suna buradan ulaşabilirsiniz!
+        </h4>
+        <button @click="githubRepo = false">
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times-circle" class="svg-inline--fa fa-times-circle fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm121.6 313.1c4.7 4.7 4.7 12.3 0 17L338 377.6c-4.7 4.7-12.3 4.7-17 0L256 312l-65.1 65.6c-4.7 4.7-12.3 4.7-17 0L134.4 338c-4.7-4.7-4.7-12.3 0-17l65.6-65-65.6-65.1c-4.7-4.7-4.7-12.3 0-17l39.6-39.6c4.7-4.7 12.3-4.7 17 0l65 65.7 65.1-65.6c4.7-4.7 12.3-4.7 17 0l39.6 39.6c4.7 4.7 4.7 12.3 0 17L312 256l65.6 65.1z"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <a href="" class="back-to-top" id="backtotop" @click="backtotop">
+      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" class="up-svg" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
+    </a>
     <Nav />
     <router-view/>
     <Footer />
@@ -16,6 +31,7 @@ export default {
   data(){
     return{
       loader: true,
+      githubRepo: true,
     }
   },
   components: {Footer, Nav},
@@ -23,6 +39,12 @@ export default {
     this.$store.dispatch('fetchBlogs');
     this.$store.dispatch('fetchNotice');
     setTimeout( () => { this.loader = false }, 1000)
+  },
+  methods: {
+    backtotop(e){
+       e.preventDefault();
+       window.scrollTo(0, 0);
+    }
   }
 }
 </script>
@@ -37,6 +59,9 @@ export default {
   box-sizing: border-box;
   text-decoration: none;
   color: black;
+}
+html{
+  scroll-behavior: smooth;
 }
 html,body{
   font-family: 'Mulish', sans-serif;
@@ -55,6 +80,62 @@ html,body{
   padding: 10px 15px;
   border-radius: 5px;
   margin: 20px 0;
+}
+.github-repo{
+  width: 100%;
+  height: 40px;
+  font-family: 'Mulish', sans-serif;
+  background: #242e4c;
+  .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    button{
+      border: none;
+      background: none;
+      outline: none;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      svg{
+        width: 100%;
+        path{
+          fill: #e0e0e0;
+        }
+      }
+    }
+    h4{
+      font-size: 15px;
+      font-weight: 500;
+      color: #e0e0e0;
+      &::selection{
+        background: none;
+      }
+      a{
+        color: #03A9F4;
+      }
+    }
+  }
+}
+
+.back-to-top{
+  width: 35px;
+  height: 35px;
+  background: rgba(0, 0, 0, .7);
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 50%;
+  display: none;
+  place-content: center;
+  cursor: pointer;
+  z-index: 999;
+  .up-svg{
+    width: 13px;
+    path{
+      fill: #e0e0e0;
+    }
+  }
 }
 
 .card .text *{
@@ -134,6 +215,9 @@ html,body{
       width: 100% !important;
       padding: 0 20px;
    }
+  .github-repo{
+    display: none;
+  }
 }
 @media (max-width: 550px) {
    .header{
