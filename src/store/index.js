@@ -6,10 +6,10 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    // baseURL: 'http://localhost/sistemankalizi/api/api/',
     baseURL: 'http://sidetab.net/api/',
     blogs: [],
     notice: [],
+    loader: true,
   },
   mutations: {
     initBlogs(state, data){
@@ -23,11 +23,13 @@ export default new Vuex.Store({
     fetchBlogs(context){
       Axios.get(this.state.baseURL).then(res => {
         context.commit('initBlogs', res.data);
+        context.state.loader = false;
       })
     },
     fetchNotice(context){
       Axios.get(this.state.baseURL + 'notice').then(res => {
         context.commit('initNotice', res.data);
+        context.state.loader = false;
       })
     }
   },
