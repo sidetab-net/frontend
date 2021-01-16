@@ -1,9 +1,8 @@
 <template>
   <div id="app">
-    <div class="loader-container" v-if="loader">
+    <div class="loader-container" v-if="this.$store.state.loader">
       <div class="loader"></div>
     </div>
-
     <div class="github-repo" v-if="githubRepo">
       <div class="container">
         <h4>sidetab.net açık kaynak geliştirilen bir projedir. Destek olmak isterseniz
@@ -14,7 +13,6 @@
         </button>
       </div>
     </div>
-
     <a href="" class="back-to-top" id="backtotop" @click="backtotop">
       <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" class="up-svg" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path></svg>
     </a>
@@ -30,7 +28,6 @@ import Footer from "@/components/Shared/Footer";
 export default {
   data(){
     return{
-      loader: true,
       githubRepo: true,
     }
   },
@@ -38,7 +35,6 @@ export default {
   created() {
     this.$store.dispatch('fetchBlogs');
     this.$store.dispatch('fetchNotice');
-    setTimeout( () => { this.loader = false }, 1000)
   },
   methods: {
     backtotop(e){
