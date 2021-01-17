@@ -137,8 +137,6 @@ html,body{
 .card .text *{
    font-size: 16px;
    font-weight: normal;
-   overflow: hidden;
-   line-height: 25px;
    &::selection{
       background: none;
    }
