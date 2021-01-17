@@ -23,7 +23,7 @@ const routes = [
   {
     path: '*',
     name: 'notFound',
-    component: () => import("@/views/Home")
+    component: () => import("@/views/notFound")
   }
 ]
 
