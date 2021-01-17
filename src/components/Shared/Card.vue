@@ -9,8 +9,7 @@
      <div class="title">
        <h3>{{ blog.title }}</h3>
      </div>
-     <div class="text" v-html="blog.text.length > 302 ? blog.text.slice(0, 302) + '...' : blog.text">
-     </div>
+     <div class="text" v-html="blog.text.replace(/(<([^>]+)>)/ig,'').slice(0, 200) + '...'"></div>
      <div class="actions">
        <router-link tag="div"
                     :to="blog.id + '/' + blog.link"
@@ -45,20 +44,21 @@ export default {
     width: 50%;
   }
   .card{
-    min-height: 200px;
+    min-height: 190px;
     border-radius: 10px;
     background: #FFF;
     box-shadow: 0 20px 53px -30px rgba(95,102,173,.57);
     padding: 25px;
     position: relative;
-    overflow: hidden;
+    line-height: 25px;
+     overflow: hidden;
     .title h3{
         font-size: 20px;
         letter-spacing: 1px;
     }
     .text{
       padding-top: 10px;
-      opacity: .5;
+      opacity: .43;
       transition: 300ms;
       *{
          font-weight: normal !important;
@@ -107,7 +107,7 @@ export default {
     }
     &:hover{
       .text{
-         filter: blur(2px);
+         opacity: 0;
       }
       .actions{
          transform: translateY(0);
